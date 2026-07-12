@@ -39,6 +39,26 @@ def dist_overlay(real, synth, column: str, label: str):
     return fig
 
 
+CONTINENT_COLORS = {"Asia": PALETTE[0], "Europe": PALETTE[1], "Africa": PALETTE[2],
+                    "Americas": PALETTE[3], "Oceania": PALETTE[4]}
+
+
+def gapminder_bubble(snap):
+    """The iconic income-vs-lifespan bubble chart, one dot per country, sized by population."""
+    fig, ax = plt.subplots(figsize=(6.5, 4), dpi=120)
+    for cont, color in CONTINENT_COLORS.items():
+        sub = snap[snap["continent"] == cont]
+        ax.scatter(sub["gdpPercap"], sub["lifeExp"], s=sub["pop"] / 200000,
+                   c=color, alpha=0.75, edgecolors="white", linewidths=0.5, label=cont)
+    ax.set_xscale("log")
+    ax.set_xlabel("Income per person (GDP per capita, log scale)", color=MUTED, fontsize=9)
+    ax.set_ylabel("Life expectancy (years)", color=MUTED, fontsize=9)
+    ax.legend(frameon=False, fontsize=8, loc="lower right", title="Continent")
+    _style(ax)
+    fig.tight_layout()
+    return fig
+
+
 def person_svg(value: float, caption: str = "") -> str:
     """A little figure whose body scales with value: thin+grey (low) → wide+green (high)."""
     v = max(0.0, min(1.0, value))

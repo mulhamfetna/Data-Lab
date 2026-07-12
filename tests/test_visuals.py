@@ -28,3 +28,15 @@ def test_dist_overlay_returns_figure():
     fig = visuals.dist_overlay(real, synth, "age", "Age")
     assert fig is not None
     assert len(fig.axes) == 1
+
+
+def test_gapminder_bubble_returns_figure():
+    rng = np.random.default_rng(0)
+    snap = pd.DataFrame({
+        "continent": ["Asia", "Europe", "Africa", "Americas", "Oceania"] * 4,
+        "gdpPercap": rng.uniform(500, 40000, 20),
+        "lifeExp": rng.uniform(45, 82, 20),
+        "pop": rng.integers(1_000_000, 100_000_000, 20),
+    })
+    fig = visuals.gapminder_bubble(snap)
+    assert fig is not None and len(fig.axes) == 1

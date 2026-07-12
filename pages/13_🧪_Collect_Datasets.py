@@ -3,7 +3,7 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
-from workshop import ui
+from workshop import ui, visuals
 
 st.set_page_config(page_title="Public Datasets", page_icon="🧪", layout="wide")
 ui.page_header(
@@ -30,8 +30,20 @@ year = st.slider("Year", int(df["year"].min()), int(df["year"].max()),
 snap = df[df["year"] == year]
 
 top = snap.loc[snap["lifeExp"].idxmax()]
-st.success(f"**In {year}, {top['country']} had the highest life expectancy "
-           f"({top['lifeExp']:.0f} years).** Watch how wealth and health move together.")
+rich = snap.loc[snap["gdpPercap"].idxmax()]
+c = st.columns(3)
+c[0].metric("Countries", snap["country"].nunique())
+c[1].metric("Longest-lived", top["country"], f"{top['lifeExp']:.0f} yrs")
+c[2].metric("Highest income", rich["country"], f"${rich['gdpPercap']:,.0f}")
 
-st.scatter_chart(snap, x="gdpPercap", y="lifeExp", color="continent", size="pop")
-st.caption("Each dot is a country · x = income per person · y = life expectancy · size = population.")
+st.success(f"**In {year}, {top['country']} had the highest life expectancy "
+           f"({top['lifeExp']:.0f} years).** Watch how wealth and health move together — drag the "
+           "year and the whole world shifts up and to the right.")
+
+st.pyplot(visuals.gapminder_bubble(snap))
+st.caption("Each dot is a country · x = income per person (log) · y = life expectancy · "
+           "size = population · colour = continent.")
+
+with st.expander("See the raw data"):
+    st.dataframe(snap[["country", "continent", "lifeExp", "pop", "gdpPercap"]]
+                 .sort_values("lifeExp", ascending=False), use_container_width=True)

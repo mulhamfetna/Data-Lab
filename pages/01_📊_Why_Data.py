@@ -14,6 +14,17 @@ c1, c2 = st.columns(2)
 c1.error("**Gut only**\n\nFast, but blind to what you can't see. Confidently wrong.")
 c2.success("**Gut + data**\n\nSame instincts, now checked against reality before you commit.")
 
+st.graphviz_chart("""
+digraph { rankdir=LR; bgcolor="transparent"; node [shape=box, style="rounded,filled",
+  fontname="sans", color="#c9ccd1"];
+  Q [label="A decision", shape=oval, fillcolor="#cfe6f5"];
+  Q -> Gut [label="gut only"]; Q -> Data [label="gut + data"];
+  Gut [label="Guess", fillcolor="#f6d5cf"]; Data [label="Check reality", fillcolor="#d4efe4"];
+  Gut -> Wrong; Data -> Right;
+  Wrong [label="Confidently wrong", fillcolor="#f6d5cf"];
+  Right [label="Evidence-backed", fillcolor="#c9f0d8"]; }
+""")
+
 st.markdown(
     "> 📎 **Story — Target knew before the father did.** By analysing shopping patterns, "
     "Target's models flagged a teenager as pregnant — and mailed baby coupons — before her "
