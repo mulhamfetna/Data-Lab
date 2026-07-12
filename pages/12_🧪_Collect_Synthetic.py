@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-from workshop import synth, ui
+from workshop import synth, ui, visuals
 
 st.set_page_config(page_title="Synthetic Data", page_icon="🧪", layout="wide")
 ui.page_header(
@@ -11,6 +11,23 @@ ui.page_header(
     "generate a synthetic stand-in — and prove it behaves like the real thing without "
     "copying any real person.",
 )
+
+st.markdown("#### The idea: a generate → validate loop")
+st.graphviz_chart("""
+digraph {
+  rankdir=LR; bgcolor="transparent";
+  node [shape=box, style="rounded,filled", fontname="sans", color="#c9ccd1"];
+  seed [label="Small real\\nseed data", fillcolor="#cfe6f5"];
+  gen  [label="Generate\\nsynthetic rows", fillcolor="#fbe6c2"];
+  util [label="Validate:\\ndoes it behave\\nlike the real?", fillcolor="#d4efe4"];
+  priv [label="Validate:\\nno real person\\ncopied?", fillcolor="#d4efe4"];
+  ok   [label="Trusted\\nsynthetic data", fillcolor="#c9f0d8", shape=oval];
+  seed -> gen -> util -> priv -> ok;
+  priv -> gen [label="not faithful?\\nregenerate", color="#d55e00", fontcolor="#d55e00", constraint=false];
+}
+""")
+st.caption("The same loop GANs, VAEs, and diffusion models run at scale — shown here at a "
+           "size that runs live.")
 
 
 def _seed_data(seed=0, n=300):
@@ -27,9 +44,11 @@ def _validate_block(real, n):
     c1, c2 = st.columns(2)
     with c1:
         st.markdown("**Utility — does it behave like the real data?**")
-        st.write({k: {"real": round(v["real_mean"], 1), "synth": round(v["synth_mean"], 1)}
-                  for k, v in util.items() if isinstance(v, dict)})
         st.caption(f"Correlation gap: {util['corr_abs_diff']:.3f} (smaller = more faithful)")
+        st.pyplot(visuals.dist_overlay(real, syn, "age", "Age"))
+        st.pyplot(visuals.dist_overlay(real, syn, "income", "Income"))
+        st.caption("The synthetic **shapes** sit on top of the real ones — same spread, "
+                   "same peaks.")
         st.scatter_chart(pd.concat([real.assign(kind="real"),
                                     syn.assign(kind="synthetic")]),
                          x="age", y="income", color="kind")
