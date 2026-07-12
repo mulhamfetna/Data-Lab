@@ -16,4 +16,10 @@ st.graphviz_chart("""
 digraph { rankdir=LR; node [shape=box, style=rounded];
   Collect -> Clean -> Filter -> Analyze -> Engineer -> Predict -> Decision; }
 """)
-st.info("Pick a page from the sidebar to begin.")
+
+st.markdown("### ✋ Before we start")
+word = st.text_input("What's the first word that comes to mind when you hear **“data”**?")
+if word:
+    st.info(f"You walked in thinking *“{word}”* — let's see where that goes by the end.")
+
+st.caption("Pick a page from the sidebar to begin.")
