@@ -6,3 +6,6 @@ matplotlib>=3.8
 requests>=2.32
 openpyxl>=3.1
 pytest>=8
+beautifulsoup4>=4.14
+pillow>=11
+playwright>=1.40
