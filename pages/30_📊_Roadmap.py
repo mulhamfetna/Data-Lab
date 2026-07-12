@@ -11,8 +11,21 @@ phases = [
     "Statistics", "Machine Learning", "Deep Learning", "MLOps & Production",
     "Specialization (CV · NLP · LLMs · MLOps)",
 ]
-for i, p in enumerate(phases, 1):
-    st.markdown(f"**Phase {i}** — {p}")
+
+st.graphviz_chart("""
+digraph { rankdir=LR; bgcolor="transparent"; node [shape=box, style="rounded,filled",
+  fontname="sans", color="#c9ccd1", fillcolor="#eef3f8"];
+  p1 [label="1 · Python &\\nData Foundations"]; p2 [label="2 · Visualization"];
+  p3 [label="3 · SQL & Data\\nEngineering"]; p4 [label="4 · Statistics"];
+  p5 [label="5 · Machine\\nLearning", fillcolor="#fbe6c2"]; p6 [label="6 · Deep\\nLearning", fillcolor="#fbe6c2"];
+  p7 [label="7 · MLOps &\\nProduction", fillcolor="#d4efe4"]; p8 [label="8 · Specialize", fillcolor="#c9f0d8", shape=oval];
+  p1->p2->p3->p4->p5->p6->p7->p8;
+  cv [label="Computer\\nVision", shape=note, fillcolor="#f7f7f5"]; nlp [label="NLP /\\nLLMs", shape=note, fillcolor="#f7f7f5"];
+  ops [label="MLOps /\\nCloud", shape=note, fillcolor="#f7f7f5"];
+  p8->cv; p8->nlp; p8->ops; }
+""")
+st.caption("A single path, branching only at the end into a specialization. "
+           "Depth over breadth: ~15 tools mastered through projects, not 50 skimmed.")
 
 st.markdown("### Anti-hype — what NOT to learn (yet)")
 st.markdown(

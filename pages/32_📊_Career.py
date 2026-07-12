@@ -3,6 +3,15 @@ import streamlit as st
 st.set_page_config(page_title="Career Growth", page_icon="📊", layout="wide")
 st.title("📊 Career Growth — proof beats certificates")
 
+st.graphviz_chart("""
+digraph { rankdir=TB; bgcolor="transparent"; node [shape=box, style="rounded,filled",
+  fontname="sans", color="#c9ccd1"];
+  You [shape=oval, fillcolor="#cfe6f5"];
+  You -> A [label="build"]; You -> B [label="hire"];
+  A [label="Door A — Build proof\\nprojects · portfolio · build-in-public", fillcolor="#d4efe4"];
+  B [label="Door B — Find & grow talent\\nread portfolios · mentor · hire", fillcolor="#fbe6c2"]; }
+""")
+
 c1, c2 = st.columns(2)
 c1.success("**Door A — Build proof**\n\nKaggle · datathons · portfolio projects · "
            "build-in-public on GitHub + LinkedIn.")

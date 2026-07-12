@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-from workshop import model, store_data as sd, ui
+from workshop import model, store_data as sd, ui, visuals
 
 st.set_page_config(page_title="Predict", page_icon="🧪", layout="wide")
 ui.page_header(
@@ -32,7 +32,17 @@ avg_amount = col[2].slider("Average order amount ($)", 1.0, 60.0, 20.0)
 
 feats = {"n_orders": n_orders, "total_qty": total_qty, "avg_amount": avg_amount}
 out = model.predict_one(clf, feats, metrics["columns"])
-if out["label"] == 1:
-    st.success(f"💎 Likely a **high-value** customer (confidence {out['proba']*100:.0f}%)")
-else:
-    st.info(f"Likely a **regular** customer (high-value confidence {out['proba']*100:.0f}%)")
+
+vis, verdict = st.columns([1, 2])
+with vis:
+    caption = "High-value 💎" if out["label"] == 1 else "Regular"
+    st.markdown(visuals.person_svg(out["proba"], caption), unsafe_allow_html=True)
+with verdict:
+    if out["label"] == 1:
+        st.success(f"💎 Likely a **high-value** customer — confidence {out['proba']*100:.0f}%.\n\n"
+                   "As spend and order count climb, the figure fills out: this is the customer "
+                   "worth nurturing before their next order.")
+    else:
+        st.info(f"Likely a **regular** customer — high-value confidence {out['proba']*100:.0f}%.\n\n"
+                "Drag the sliders up (more orders, bigger baskets) and watch the model — and the "
+                "figure — change its mind.")
