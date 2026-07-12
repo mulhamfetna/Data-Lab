@@ -2,7 +2,9 @@ import pytest
 from streamlit.testing.v1 import AppTest
 
 PAGES = [
-    "pages/14_🧪_Collect_Other_Sources.py",
+    "pages/14_🧪_Collect_Internal.py",
+    "pages/15_🧪_Collect_Qualitative.py",
+    "pages/16_🧪_Collect_Survey.py",
     "pages/25_🧪_Report.py",
     "pages/30_📊_Roadmap.py",
     "pages/31_📊_Roles.py",
