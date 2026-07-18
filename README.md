@@ -51,6 +51,20 @@ Qualitative→Quantitative · Survey
 - **Govern** — PII masking, fairness audit, data drift, lineage
 - **Serve** — model-as-API, monitoring/retraining, orchestration
 
+**Second wave — judgment, GenAI, and teaching layers:**
+
+- **Data Judgment** — Simpson's paradox, correlation vs causation, sampling bias, misleading
+  charts, confidence intervals & p-hacking
+- **GenAI / LLM** — prompt playground, RAG, summarization, structured extraction, zero-shot
+  classifier, guardrails & hallucination. Each has a **free-provider live path** (Groq /
+  OpenRouter / Hugging Face / local Ollama, via their OpenAI-compatible endpoints) and an
+  honest offline simulation, so it runs on stage with no key.
+- **Explainability (XAI)** — global feature attribution, single-prediction explanation
+- **Advanced Analytics** — price optimization, Monte Carlo, geospatial, network analysis,
+  matrix-factorization recommender
+- **Teaching Layers** — capstone path, role-based tracks, per-epic quizzes, bilingual glossary,
+  case-study cards
+
 Every module was built on its own branch and merged via pull request; see the repository's
 closed Issues and Releases for the full history.
 
@@ -82,6 +96,9 @@ python3 -m pytest -m live          # network smoke tests
   GAN/transformer live, and says so — it shows the principle those methods scale up.
 - The **Scraper** demo's Syrian (`.sy`) targets are geo-restricted and only reachable from within
   Syria; scraping runs server-side, so run the app locally on a Syrian connection for those.
+- The **GenAI** demos call a real model only when a free provider key is set (`GROQ_API_KEY`,
+  `OPENROUTER_API_KEY`, `HF_TOKEN`, or a local `OLLAMA_HOST`); with none set they run a
+  clearly-labeled offline simulation and never present it as a real model.
 
 ## Citation
 
