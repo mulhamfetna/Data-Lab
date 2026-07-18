@@ -5,6 +5,10 @@ from workshop.i18n import t
 
 st.set_page_config(page_title="Data to Decisions", page_icon="📊", layout="wide")
 lang = ui.language_toggle()
+from pathlib import Path as _P
+_logo = _P(__file__).parent / "assets" / "neurobotics_logo.png"
+if _logo.exists():
+    st.image(str(_logo), width=90)
 rtl = 'dir="rtl" style="text-align:right"' if lang == "ar" else ""
 
 st.title(f"📊 {t('title', lang)}")
@@ -26,3 +30,5 @@ if word:
     st.info(f"You walked in thinking *“{word}”* — let's see where that goes by the end.")
 
 st.caption(t("begin", lang))
+
+ui.footer()

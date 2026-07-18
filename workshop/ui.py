@@ -23,3 +23,13 @@ def page_header(title: str, takeaway: str) -> None:
 
 def leader_takeaway(text: str) -> None:
     st.info(f"📎 **{t('takeaway', current_lang())}:** {text}")
+
+
+def footer() -> None:
+    st.markdown("---")
+    st.caption(
+        "**Neurobotics Academy** · Eng. Mulham Fetna · "
+        "[Telegram](https://t.me/Mulham_Fetna_official) · "
+        "[GitHub](https://github.com/mulhamfetna) · "
+        "[YouTube](https://www.youtube.com/@eng.mulham-fetna) · "
+        "[Instagram](https://instagram.com/mulham.robotics)")
