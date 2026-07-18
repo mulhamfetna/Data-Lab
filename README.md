@@ -1,6 +1,6 @@
 # 📊 Data to Decisions — Interactive Data-Literacy Workshop Platform
 
-[![Live site](https://img.shields.io/badge/Live_site-mulhamfetna.github.io%2FData--Lab-0072B2?logo=githubpages&logoColor=white)](https://mulhamfetna.github.io/Data-Lab/)
+[![Live site](https://img.shields.io/badge/Live_site-datalab.mulhamfetna.com-0072B2?logo=githubpages&logoColor=white)](https://datalab.mulhamfetna.com)
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.14-blue.svg)](https://www.python.org/)
 [![Built with Streamlit](https://img.shields.io/badge/built%20with-Streamlit-ff4b4b.svg)](https://streamlit.io/)
@@ -15,7 +15,7 @@ the interactive backbone of the *From Data to Decisions* workshop by **Neuroboti
 Every demo follows one small fictional business — *Nour Store* — from raw, messy data all the way
 to a decision, so the audience watches a single story become a decision.
 
-**🔗 Live site:** <https://mulhamfetna.github.io/Data-Lab/>
+**🔗 Live site:** <https://datalab.mulhamfetna.com>
 
 ## Run
 
