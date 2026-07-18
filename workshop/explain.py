@@ -68,3 +68,23 @@ def top_drivers(contributions: dict[str, float], k: int = 3) -> list[tuple[str, 
     """The k features that moved this prediction the most (either direction)."""
     ranked = sorted(contributions.items(), key=lambda kv: -abs(kv[1]))
     return [(name, val) for name, val in ranked[:k] if val != 0]
+
+
+_FRIENDLY = {"n_orders": "number of orders", "total_qty": "total items bought",
+             "avg_amount": "average order amount"}
+
+
+def friendly(name: str) -> str:
+    """A human-readable label for a feature column."""
+    if name.startswith("city_"):
+        return f"top city is {name[5:]}"
+    return _FRIENDLY.get(name, name)
+
+
+def narrate(contributions: dict[str, float], k: int = 3) -> list[str]:
+    """Plain-language sentences for the top drivers of one prediction."""
+    lines = []
+    for name, val in top_drivers(contributions, k):
+        verb = "raised" if val > 0 else "lowered"
+        lines.append(f"Their **{friendly(name)}** {verb} the score ({val:+.2f}).")
+    return lines
