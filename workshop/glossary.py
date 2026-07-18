@@ -1,0 +1,131 @@
+"""Bilingual glossary — every term in the lab, in English and Arabic.
+
+A shared vocabulary is half of data literacy. Non-programmers stall on jargon, and a bilingual
+audience needs the Arabic term beside the English one. Definitions are one plain sentence each,
+angled at a decision-maker rather than an engineer, and the page is searchable in either language.
+"""
+from __future__ import annotations
+
+# Each entry: English term, Arabic term, English definition, Arabic definition.
+GLOSSARY: list[dict[str, str]] = [
+    {"en": "Data", "ar": "البيانات",
+     "def_en": "Raw facts — orders, clicks, readings — before they mean anything.",
+     "def_ar": "حقائق خام مثل الطلبات والنقرات والقياسات قبل أن يكون لها معنى."},
+    {"en": "Dataset", "ar": "مجموعة بيانات",
+     "def_en": "A collected table of data you can analyse.",
+     "def_ar": "جدول من البيانات مُجمَّع بحيث يمكن تحليله."},
+    {"en": "API", "ar": "واجهة برمجة التطبيقات",
+     "def_en": "A doorway one system uses to pull live data from another.",
+     "def_ar": "بوابة يستخدمها نظام لجلب بيانات حيّة من نظام آخر."},
+    {"en": "Synthetic data", "ar": "البيانات الاصطناعية",
+     "def_en": "Artificial data that mimics real data — to fill gaps or protect privacy.",
+     "def_ar": "بيانات مُصطنعة تحاكي البيانات الحقيقية لسدّ النقص أو حماية الخصوصية."},
+    {"en": "Data cleaning", "ar": "تنظيف البيانات",
+     "def_en": "Fixing messy, inconsistent, or missing values before analysis.",
+     "def_ar": "إصلاح القيم الفوضوية أو غير المتسقة أو المفقودة قبل التحليل."},
+    {"en": "Outlier", "ar": "قيمة شاذة",
+     "def_en": "A value far from the rest — a real event or an error.",
+     "def_ar": "قيمة بعيدة عن البقية، قد تكون حدثاً حقيقياً أو خطأً."},
+    {"en": "Imputation", "ar": "تعويض القيم المفقودة",
+     "def_en": "Filling missing values with a sensible estimate.",
+     "def_ar": "ملء القيم المفقودة بتقدير معقول."},
+    {"en": "Feature", "ar": "سمة",
+     "def_en": "One input column a model learns from (e.g. number of orders).",
+     "def_ar": "عمود إدخال واحد يتعلّم منه النموذج، مثل عدد الطلبات."},
+    {"en": "Model", "ar": "نموذج",
+     "def_en": "A learned pattern that turns inputs into a prediction.",
+     "def_ar": "نمط مُتعلَّم يحوّل المدخلات إلى تنبؤ."},
+    {"en": "Training", "ar": "تدريب",
+     "def_en": "Showing a model past examples so it learns the pattern.",
+     "def_ar": "عرض أمثلة سابقة على النموذج ليتعلّم النمط."},
+    {"en": "Accuracy", "ar": "الدقة",
+     "def_en": "How often a model is right — but not the whole story.",
+     "def_ar": "نسبة إصابة النموذج، لكنها ليست القصة كاملة."},
+    {"en": "Overfitting", "ar": "الإفراط في الملاءمة",
+     "def_en": "A model that memorised the training data and fails on new data.",
+     "def_ar": "نموذج حفظ بيانات التدريب ويفشل على بيانات جديدة."},
+    {"en": "Correlation", "ar": "ارتباط",
+     "def_en": "Two things moving together — not proof one causes the other.",
+     "def_ar": "تحرّك شيئين معاً، وليس دليلاً أن أحدهما يسبب الآخر."},
+    {"en": "Causation", "ar": "سببية",
+     "def_en": "One thing actually making another happen.",
+     "def_ar": "أن يُحدِث شيء ما شيئاً آخر فعلاً."},
+    {"en": "Simpson's paradox", "ar": "مفارقة سيمبسون",
+     "def_en": "A trend that reverses once the data is split into groups.",
+     "def_ar": "اتجاه ينقلب عند تقسيم البيانات إلى مجموعات."},
+    {"en": "p-value", "ar": "القيمة الاحتمالية p",
+     "def_en": "The chance a result is just noise — small means less likely luck.",
+     "def_ar": "احتمال أن تكون النتيجة مجرد ضجيج؛ القيمة الصغيرة تعني احتمال صدفة أقل."},
+    {"en": "Confidence interval", "ar": "فترة الثقة",
+     "def_en": "The plausible range around an estimate; narrower with more data.",
+     "def_ar": "المدى المعقول حول التقدير، ويضيق مع زيادة البيانات."},
+    {"en": "Sampling bias", "ar": "تحيّز العيّنة",
+     "def_en": "Surveying the wrong people, giving a wrong answer.",
+     "def_ar": "استطلاع الأشخاص الخطأ، ما يعطي إجابة خاطئة."},
+    {"en": "Embedding", "ar": "تضمين",
+     "def_en": "Turning text into numbers so meaning can be compared.",
+     "def_ar": "تحويل النص إلى أرقام لتتسنّى مقارنة المعنى."},
+    {"en": "Tokenization", "ar": "التجزئة إلى رموز",
+     "def_en": "Splitting text into the small pieces a model reads.",
+     "def_ar": "تقسيم النص إلى أجزاء صغيرة يقرؤها النموذج."},
+    {"en": "RAG", "ar": "التوليد المعزّز بالاسترجاع",
+     "def_en": "Grounding an AI's answer in your own documents.",
+     "def_ar": "تأسيس إجابة الذكاء الاصطناعي على مستنداتك الخاصة."},
+    {"en": "LLM", "ar": "نموذج لغوي كبير",
+     "def_en": "A large language model that generates human-like text.",
+     "def_ar": "نموذج لغوي كبير يولّد نصاً شبيهاً بالبشري."},
+    {"en": "Hallucination", "ar": "هلوسة النموذج",
+     "def_en": "When an AI confidently states something false.",
+     "def_ar": "حين يذكر الذكاء الاصطناعي معلومة خاطئة بثقة."},
+    {"en": "Prompt", "ar": "الموجّه",
+     "def_en": "The instruction you give an AI; its wording changes the answer.",
+     "def_ar": "التعليمة التي تعطيها للذكاء الاصطناعي، وصياغتها تغيّر الإجابة."},
+    {"en": "Zero-shot", "ar": "التصنيف دون أمثلة",
+     "def_en": "Classifying with no training examples — just described categories.",
+     "def_ar": "التصنيف دون أمثلة تدريب، بالاعتماد على وصف الفئات فقط."},
+    {"en": "Clustering", "ar": "التجميع العنقودي",
+     "def_en": "Grouping similar records without predefined labels.",
+     "def_ar": "تجميع السجلات المتشابهة دون تصنيفات مسبقة."},
+    {"en": "Anomaly detection", "ar": "كشف الشذوذ",
+     "def_en": "Flagging records that don't fit the normal pattern (fraud, faults).",
+     "def_ar": "رصد السجلات التي لا تطابق النمط الطبيعي كالاحتيال والأعطال."},
+    {"en": "A/B testing", "ar": "اختبار A/B",
+     "def_en": "Comparing two versions to prove which performs better.",
+     "def_ar": "مقارنة نسختين لإثبات أيّهما أفضل أداءً."},
+    {"en": "Forecasting", "ar": "التنبؤ",
+     "def_en": "Estimating future values from past trends.",
+     "def_ar": "تقدير القيم المستقبلية من الاتجاهات السابقة."},
+    {"en": "Data drift", "ar": "انزياح البيانات",
+     "def_en": "When the world changes and a once-good model goes stale.",
+     "def_ar": "حين يتغيّر الواقع فيصبح نموذج كان جيداً قديماً."},
+    {"en": "PII", "ar": "معلومات التعريف الشخصية",
+     "def_en": "Data that identifies a person — must be protected.",
+     "def_ar": "بيانات تُعرِّف شخصاً، ويجب حمايتها."},
+    {"en": "Fairness", "ar": "الإنصاف",
+     "def_en": "Checking a model doesn't disadvantage a group.",
+     "def_ar": "التحقّق من أن النموذج لا يظلم فئة معيّنة."},
+    {"en": "Monte Carlo", "ar": "محاكاة مونت كارلو",
+     "def_en": "Modelling risk by simulating an outcome thousands of times.",
+     "def_ar": "نمذجة المخاطر بمحاكاة النتيجة آلاف المرات."},
+    {"en": "Optimization", "ar": "التحسين",
+     "def_en": "Finding the input (e.g. price) that maximises an outcome.",
+     "def_ar": "إيجاد المدخل (كالسعر) الذي يعظّم النتيجة."},
+    {"en": "Matrix factorization", "ar": "تحليل المصفوفات",
+     "def_en": "The recommender method that learns hidden tastes.",
+     "def_ar": "طريقة التوصية التي تتعلّم الأذواق الخفية."},
+]
+
+
+def search(query: str, entries: list[dict] | None = None) -> list[dict]:
+    """Case-insensitive match on either language's term or definition."""
+    items = GLOSSARY if entries is None else entries
+    q = query.strip().lower()
+    if not q:
+        return list(items)
+    return [e for e in items
+            if q in e["en"].lower() or q in e["ar"] or q in e["def_en"].lower()
+            or q in e["def_ar"]]
+
+
+def terms() -> list[str]:
+    return [e["en"] for e in GLOSSARY]
