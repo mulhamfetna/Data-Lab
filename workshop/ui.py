@@ -1,6 +1,26 @@
+import os
+
 import streamlit as st
 
 from workshop.i18n import t
+
+# Keys the GenAI demos read from os.environ. On Streamlit Community Cloud these arrive via
+# st.secrets, not the environment, so we bridge them across once per page load.
+_SECRET_KEYS = ("GROQ_API_KEY", "OPENROUTER_API_KEY", "HF_TOKEN", "OLLAMA_HOST",
+                "LLM_PROVIDER", "LLM_MODEL")
+
+
+def load_secrets_to_env() -> None:
+    """Copy any configured provider keys from st.secrets into os.environ (cloud deploys).
+
+    A no-op locally (no secrets file) — wrapped so a missing secrets store never raises.
+    """
+    try:
+        for key in _SECRET_KEYS:
+            if key not in os.environ and key in st.secrets:
+                os.environ[key] = str(st.secrets[key])
+    except Exception:
+        pass
 
 
 def current_lang() -> str:
@@ -17,6 +37,7 @@ def language_toggle() -> str:
 
 
 def page_header(title: str, takeaway: str) -> None:
+    load_secrets_to_env()
     st.title(title)
     leader_takeaway(takeaway)
 
