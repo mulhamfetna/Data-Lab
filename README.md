@@ -72,8 +72,21 @@ python3 -m pytest -m live          # network smoke tests
 
 ## Citation
 
-If you use this platform, please cite it — see [`CITATION.cff`](CITATION.cff). GitHub renders a
-**"Cite this repository"** button from that file.
+If you use this platform, please cite it. Archived on Zenodo — concept DOI
+[10.5281/zenodo.21427808](https://doi.org/10.5281/zenodo.21427808) (always resolves to the
+latest version). GitHub also renders a **"Cite this repository"** button from
+[`CITATION.cff`](CITATION.cff).
+
+```bibtex
+@software{fetna_datalab_2026,
+  author    = {Fetna, Mulham},
+  title     = {Data to Decisions: An Interactive Data-Literacy Workshop Platform},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.21427808},
+  url       = {https://github.com/mulhamfetna/Data-Lab}
+}
+```
 
 ## License
 
