@@ -1,17 +1,20 @@
 import streamlit as st
 
+from workshop import ui
+from workshop.i18n import t
+
 st.set_page_config(page_title="Data to Decisions", page_icon="📊", layout="wide")
-st.title("📊 Data to Decisions")
-st.subheader("An interactive tour of how data becomes a decision")
+lang = ui.language_toggle()
+rtl = 'dir="rtl" style="text-align:right"' if lang == "ar" else ""
+
+st.title(f"📊 {t('title', lang)}")
+st.markdown(f'<div {rtl}><h3>{t("subtitle", lang)}</h3>{t("intro", lang)}</div>',
+            unsafe_allow_html=True)
+
+st.markdown(f"### {t('journey', lang)}")
 st.markdown(
-    "Use the sidebar to move through the workshop. Each **📊 page** is a slide and each "
-    "**🧪 page** is a live demo. The demos follow one small business — *Nour Store* — from "
-    "raw, messy data all the way to a decision."
-)
-st.markdown("### The journey")
-st.markdown(
-    "**Collect** → **Clean** → **Filter** → **Analyze** → **Engineer** → **Predict** → **Decision**"
-)
+    f"**{t('Collect', lang)}** → **{t('Clean', lang)}** → **{t('Analyze', lang)}** → "
+    f"**{t('Decision', lang)}**")
 st.graphviz_chart("""
 digraph { rankdir=LR; node [shape=box, style=rounded];
   Collect -> Clean -> Filter -> Analyze -> Engineer -> Predict -> Decision; }
@@ -22,4 +25,4 @@ word = st.text_input("What's the first word that comes to mind when you hear **�
 if word:
     st.info(f"You walked in thinking *“{word}”* — let's see where that goes by the end.")
 
-st.caption("Pick a page from the sidebar to begin.")
+st.caption(t("begin", lang))
