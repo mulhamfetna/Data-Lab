@@ -14,8 +14,8 @@ authors:
 version: 1.0.0
 date-released: "2026-07-18"
 license: AGPL-3.0-or-later
-url: "https://github.com/mulhamfetna/workshop-platform"
-repository-code: "https://github.com/mulhamfetna/workshop-platform"
+url: "https://github.com/mulhamfetna/Data-Lab"
+repository-code: "https://github.com/mulhamfetna/Data-Lab"
 keywords:
   - data literacy
   - data science education
