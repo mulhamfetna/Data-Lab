@@ -1,0 +1,13 @@
+# Simple self-host on a VPS:  docker compose up -d  →  http://<host>:8501
+# Put free GenAI keys in a .env file next to this (see .streamlit/secrets.toml.example
+# for the names); with none set, the GenAI demos run their offline simulation.
+services:
+  data-lab:
+    build: .
+    image: data-lab
+    ports:
+      - "8501:8501"
+    env_file:
+      - path: .env
+        required: false
+    restart: unless-stopped
