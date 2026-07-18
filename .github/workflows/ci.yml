@@ -18,4 +18,4 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Run offline test suite
-        run: python -m pytest -m "not live" -q
+        run: python -m pytest -m "not live" --cov=workshop --cov-report=term-missing --cov-fail-under=90 -q
