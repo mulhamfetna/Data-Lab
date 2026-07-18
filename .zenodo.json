@@ -1,0 +1,11 @@
+{
+  "title": "Data to Decisions: An Interactive Data-Literacy Workshop Platform",
+  "description": "An interactive, multi-page Streamlit platform that teaches non-programmers the full data lifecycle — collection, cleaning, filtering, analysis, engineering, and machine learning — as live, hands-on demos built around one shared story dataset.",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "AGPL-3.0-or-later",
+  "creators": [
+    { "name": "Fetna, Mulham", "orcid": "0009-0006-4432-798X" }
+  ],
+  "keywords": ["data literacy", "data science education", "data lifecycle", "interactive learning", "streamlit", "synthetic data"]
+}

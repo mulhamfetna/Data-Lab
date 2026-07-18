@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software in your research or teaching, please cite it as below."
+title: "Data to Decisions: An Interactive Data-Literacy Workshop Platform"
+abstract: >-
+  An interactive, multi-page Streamlit platform that teaches non-programmers the full data
+  lifecycle — collection, cleaning, filtering, analysis, engineering, and machine learning — as
+  live, hands-on demos built around one shared story dataset.
+type: software
+authors:
+  - family-names: Fetna
+    given-names: Mulham
+    orcid: "https://orcid.org/0009-0006-4432-798X"
+    email: contact@mulhamfetna.com
+version: 1.0.0
+date-released: "2026-07-18"
+license: AGPL-3.0-or-later
+url: "https://github.com/molhamfetnah/workshop-platform"
+repository-code: "https://github.com/molhamfetnah/workshop-platform"
+keywords:
+  - data literacy
+  - data science education
+  - data lifecycle
+  - interactive learning
+  - streamlit
+  - synthetic data
