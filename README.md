@@ -3,6 +3,7 @@
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.14-blue.svg)](https://www.python.org/)
 [![Built with Streamlit](https://img.shields.io/badge/built%20with-Streamlit-ff4b4b.svg)](https://streamlit.io/)
+[![coverage](https://img.shields.io/badge/coverage-%E2%89%A590%25-brightgreen)](.github/workflows/ci.yml)
 [![DOI](https://zenodo.org/badge/1304803192.svg)](https://zenodo.org/badge/latestdoi/1304803192)
 
 A multi-page [Streamlit](https://streamlit.io/) app that teaches **non-programmers** the full
