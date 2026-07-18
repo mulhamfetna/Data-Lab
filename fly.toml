@@ -1,0 +1,25 @@
+# Fly.io deploy:  fly launch --copy-config --now   (or: fly deploy)
+# Set GenAI keys as secrets (not baked into the image):
+#   fly secrets set GROQ_API_KEY=gsk_...
+app = "data-lab"
+primary_region = "cdg"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[http_service]
+  internal_port = 8501
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [[http_service.checks]]
+    interval = "30s"
+    timeout = "5s"
+    method = "GET"
+    path = "/_stcore/health"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "1gb"
