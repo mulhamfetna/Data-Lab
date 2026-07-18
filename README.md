@@ -38,8 +38,20 @@ Qualitative→Quantitative · Survey
 **Transform (on the shared Nour Store data):** Clean · Filter · Analyze · Engineer
 (star schema → SQLite) · Predict (a scikit-learn classifier) · Report
 
-The roadmap of upcoming **Data Lab** modules (mining, big data, labeling, tokenization,
-quantization, governance, and more) is tracked in the repository's GitHub Issues.
+**Data Lab (35 modules across 9 lifecycle stages):**
+
+- **Acquire** — streaming, file formats, SQL extraction, data integration
+- **Label** — interactive labeling, active learning, weak supervision
+- **Clean** — profiling, deduplication, imputation, outlier treatment
+- **Encode** — tokenization, quantization, embeddings, categorical encoding, scaling
+- **Mine** — market-basket, clustering/segmentation, anomaly detection
+- **Model** — forecasting, recommendation, A/B testing, sentiment, image classification
+- **Scale** — big-data chunking, compression, indexing, warehouse-vs-lake
+- **Govern** — PII masking, fairness audit, data drift, lineage
+- **Serve** — model-as-API, monitoring/retraining, orchestration
+
+Every module was built on its own branch and merged via pull request; see the repository's
+closed Issues and Releases for the full history.
 
 ## Architecture
 
