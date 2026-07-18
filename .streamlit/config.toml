@@ -4,3 +4,10 @@ gatherUsageStats = false
 
 [browser]
 gatherUsageStats = false
+
+[theme]
+primaryColor = "#8000ff"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f5f0ff"
+textColor = "#22262b"
+font = "sans serif"
