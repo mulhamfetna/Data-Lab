@@ -15,7 +15,8 @@ the interactive backbone of the *From Data to Decisions* workshop by **Neuroboti
 Every demo follows one small fictional business — *Nour Store* — from raw, messy data all the way
 to a decision, so the audience watches a single story become a decision.
 
-**🔗 Live site:** <https://datalab.mulhamfetna.com>
+**▶ Try the live lab:** <https://mulhamfetna-datalab.streamlit.app/>
+**🔗 Website:** <https://datalab.mulhamfetna.com>
 
 ## Run
 
