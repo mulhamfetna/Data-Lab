@@ -162,8 +162,13 @@ Effort is rough solo-developer weeks.
 payoff — then adopt **Frappe LMS or Moodle** with **LTI 1.3 + xAPI** as the integration glue.
 Reserve the heavier Open edX only if you truly go MOOC-scale.
 
-**Hosting note:** Streamlit Community Cloud is free but ~**1 GB RAM/app**; **Hugging Face Spaces**
-is free with **~16 GB RAM** and is the better home for heavier demos (and for Gradio widgets).
+**Hosting note (verified July 2026):** **Streamlit Community Cloud** is the free host — public
+apps, ~**1 GB RAM**, up to 3 apps, deployed from a public GitHub repo, sleeping when idle. They
+grant **free resource increases to educational organizations** case-by-case, which this project
+qualifies for. **Hugging Face Spaces now requires a PRO plan for any Space that runs compute**
+(Gradio/Docker); only *Static* Spaces remain free, and those cannot run this app — note that HF's
+own docs and pricing page still advertise a free CPU tier, but the Space-creation UI is the
+authority. Hugging Face remains useful for **models** (Inference Providers) regardless of host.
 
 **What makes explorables work** (design guide for Stage 1): active learning-by-doing, guided
 discovery from one isolated mechanic, making the abstract concrete, immediate feedback, and
