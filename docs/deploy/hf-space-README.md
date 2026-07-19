@@ -46,3 +46,7 @@ offline simulation. A simulation is never presented as a real model.
 *This file is the Space's README. It is published automatically from
 `docs/deploy/hf-space-README.md` in the GitHub repo by the `sync-to-hf-space` workflow — edit it
 there, not on the Space.*
+
+*⚠️ As of July 2026, Hugging Face requires a **PRO** plan for Spaces that run compute
+(Gradio/Docker); only Static Spaces are free. This Space therefore needs PRO. The free-hosting
+path for this app is Streamlit Community Cloud — see `DEPLOY.md`.*

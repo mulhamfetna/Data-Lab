@@ -16,16 +16,31 @@ from zero-setup to full control. Pick one — the app code is identical across a
 
 ---
 
-## 1. Streamlit Community Cloud — easiest, free  ⭐ recommended
+## 1. Streamlit Community Cloud — the free host  ⭐ recommended
 
 Auto-redeploys on every push to `main`, and gives a public `*.streamlit.app` URL.
+
+Free-tier reality (verified July 2026): **public apps only**, ~**1 GB RAM** per app, up to
+**3 apps** per account, must deploy from a **public** GitHub repo, and apps **sleep when idle**
+(they wake on visit — open yours a few minutes before a workshop). Streamlit grants **free
+resource increases to nonprofits and educational organizations** case-by-case; this project
+qualifies, so request one if 1 GB gets tight.
 
 1. https://share.streamlit.io → sign in with GitHub → authorize.
 2. **New app** → repo `mulhamfetna/Data-Lab`, branch `main`, main file `Home.py` → **Deploy**.
 3. App → **Settings → Secrets** → paste a key, e.g. `GROQ_API_KEY = "gsk_..."`.
 4. Open the in-app **Share (QR)** page, paste the `*.streamlit.app` URL, project the QR.
 
-## 2. Hugging Face Spaces — free, container-based, auto-deployed
+## 2. Hugging Face Spaces — ⚠️ requires a PRO plan
+
+> **Verified July 2026:** the Space-creation UI states *"Gradio and Docker Spaces require a paid
+> plan… To create a Space that runs on compute, subscribe to PRO."* Only **Static** Spaces are
+> free, and those serve static files — they cannot run this Streamlit app. HF's public docs and
+> pricing page still advertise a free "CPU Basic" tier; that is **stale** — trust the UI.
+>
+> Everything below works, but only on a **PRO** account. For free hosting use option 1
+> (Streamlit Community Cloud). Hugging Face is still worth using for **models** — see
+> "GenAI keys" above; HF Inference Providers work from any host.
 
 The Space runs this repo's `Dockerfile` and **auto-updates on every push to `main`** via the
 [`sync-to-hf-space`](.github/workflows/sync-to-hf-space.yml) workflow.

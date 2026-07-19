@@ -3,6 +3,10 @@ name: Sync to Hugging Face Space
 # Mirrors main to the Hugging Face Space so the live app tracks the repo.
 # Requires a repo secret HF_TOKEN (a Hugging Face token with *write* access).
 # The Space must already exist: huggingface.co/new-space -> SDK "Docker".
+#
+# NOTE (July 2026): Docker/Gradio Spaces require a Hugging Face PRO plan; only Static
+# Spaces are free. Without PRO there is no Space to push to and this workflow simply
+# skips (no HF_TOKEN secret). Free hosting for this app: Streamlit Community Cloud.
 
 on:
   push:
