@@ -25,11 +25,30 @@ Auto-redeploys on every push to `main`, and gives a public `*.streamlit.app` URL
 3. App → **Settings → Secrets** → paste a key, e.g. `GROQ_API_KEY = "gsk_..."`.
 4. Open the in-app **Share (QR)** page, paste the `*.streamlit.app` URL, project the QR.
 
-## 2. Hugging Face Spaces — free, container-based
+## 2. Hugging Face Spaces — free, container-based, auto-deployed
 
-See [`docs/deploy/huggingface-space-README.md`](docs/deploy/huggingface-space-README.md) for the
-Space `README` front-matter (SDK: docker, `app_port: 8501`). Add GenAI keys under the Space's
-**Settings → Variables and secrets**.
+The Space runs this repo's `Dockerfile` and **auto-updates on every push to `main`** via the
+[`sync-to-hf-space`](.github/workflows/sync-to-hf-space.yml) workflow.
+
+One-time setup:
+
+1. Create the Space: <https://huggingface.co/new-space> → owner `mulhamfetna`, name `Data-Lab`,
+   **SDK: Docker**, public. (Leave it empty — the workflow pushes the code.)
+2. Create a Hugging Face token with **write** access:
+   <https://huggingface.co/settings/tokens>
+3. Add it to GitHub as a repo secret named **`HF_TOKEN`**:
+   *Settings → Secrets and variables → Actions → New repository secret.*
+4. Push to `main` (or run the workflow manually) — the Space builds and goes live.
+
+To enable the **live GenAI demos** on the Space, also add a token in the Space itself:
+*Space → Settings → Variables and secrets → New secret* → `HF_TOKEN`. The app detects it and
+prefers **Hugging Face Inference Providers** while running on a Space, using
+`openai/gpt-oss-20b:cheapest` (open weights, routed to the cheapest provider). Free accounts get
+a limited monthly inference quota — with no token, the demos fall back to the labelled offline
+simulation and everything else still works.
+
+The Space's `README.md` (front-matter that Spaces requires) is generated from
+[`docs/deploy/hf-space-README.md`](docs/deploy/hf-space-README.md) — edit it there, not on the Space.
 
 ## 3. Docker / VPS — full control
 
