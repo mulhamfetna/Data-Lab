@@ -28,8 +28,11 @@ PROVIDERS: list[tuple[str, str | None, str, str]] = [
     ("Groq", "GROQ_API_KEY", "https://api.groq.com/openai/v1", "llama-3.1-8b-instant"),
     ("OpenRouter", "OPENROUTER_API_KEY", "https://openrouter.ai/api/v1",
      "meta-llama/llama-3.2-3b-instruct:free"),
+    # Model id verified against https://router.huggingface.co/v1/models: open-weights
+    # (no license gating), served by ~8 providers, and ":cheapest" routes to the lowest
+    # price per output token to stretch the free monthly quota.
     ("Hugging Face", "HF_TOKEN", "https://router.huggingface.co/v1",
-     "meta-llama/Llama-3.2-3B-Instruct"),
+     "openai/gpt-oss-20b:cheapest"),
     ("Ollama", None, "__ollama__", "llama3.2:1b"),
 ]
 
@@ -38,10 +41,23 @@ def _ollama_base() -> str:
     return os.environ.get("OLLAMA_HOST", "http://localhost:11434").rstrip("/") + "/v1"
 
 
+def on_hf_space() -> bool:
+    """True when running inside a Hugging Face Space (HF sets SPACE_ID)."""
+    return bool(os.environ.get("SPACE_ID"))
+
+
+def _provider_order() -> list[tuple[str, str | None, str, str]]:
+    """Provider preference. On a Hugging Face Space, prefer HF's own inference router."""
+    order = list(PROVIDERS)
+    if on_hf_space():
+        order.sort(key=lambda p: 0 if p[0] == "Hugging Face" else 1)
+    return order
+
+
 def active_provider() -> tuple[str, str | None, str, str] | None:
     """The first configured provider, or None when nothing is set up (offline)."""
     forced = os.environ.get("LLM_PROVIDER", "").strip().lower()
-    for name, key_env, base, model in PROVIDERS:
+    for name, key_env, base, model in _provider_order():
         base = _ollama_base() if base == "__ollama__" else base
         enabled = (bool(key_env) and bool(os.environ.get(key_env))) or \
                   (key_env is None and bool(os.environ.get("OLLAMA_HOST")))

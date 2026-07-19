@@ -1,0 +1,54 @@
+name: Sync to Hugging Face Space
+
+# Mirrors main to the Hugging Face Space so the live app tracks the repo.
+# Requires a repo secret HF_TOKEN (a Hugging Face token with *write* access).
+# The Space must already exist: huggingface.co/new-space -> SDK "Docker".
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: hf-space-sync
+  cancel-in-progress: true
+
+env:
+  HF_USER: mulhamfetna
+  HF_SPACE: Data-Lab
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    # Skip cleanly on forks / when the secret isn't configured yet.
+    if: github.repository == 'mulhamfetna/Data-Lab'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check token is configured
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          if [ -z "$HF_TOKEN" ]; then
+            echo "::warning::HF_TOKEN secret not set — skipping Space sync."
+            echo "skip=true" >> "$GITHUB_ENV"
+          fi
+
+      - name: Use the Space README (front-matter is required by Spaces)
+        if: env.skip != 'true'
+        run: cp docs/deploy/hf-space-README.md README.md
+
+      - name: Push to the Space
+        if: env.skip != 'true'
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Deploy ${GITHUB_SHA::7} from GitHub" || echo "nothing to commit"
+          git push --force \
+            "https://${HF_USER}:${HF_TOKEN}@huggingface.co/spaces/${HF_USER}/${HF_SPACE}" \
+            HEAD:main
