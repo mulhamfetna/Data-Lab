@@ -12,7 +12,9 @@ import re
 # Each rubric item: (key, human label, a regex that hints the element is present).
 RUBRIC: list[tuple[str, str, str]] = [
     ("task", "States the task clearly",
-     r"\b(summar|classif|extract|write|list|explain|translate|draft|compare)\w*"),
+     r"\b(summar|classif|extract|writ|list|explain|translat|draft|compar|tell|repl|respond"
+     r"|apolog|answer|ask|describ|generat|creat|plan|recommend|suggest|email|messag|notif"
+     r"|inform|rewrit|analy[sz]|convince|persuade|greet|thank)\w*"),
     ("context", "Gives context / background",
      r"\b(context|background|the following|below|our|company|customer|based on)\b"),
     ("format", "Specifies the output format",
